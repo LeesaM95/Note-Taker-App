@@ -13,15 +13,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const PORT = process.env.PORT || 3001;
 
-// GET route to send /notes to notes.html
-app.get('/notes' , (req, res) => {
-    fs.sendFile(path.join(__dirname, 'public', 'notes.html'));
-});
+// // GET route to send /notes to notes.html
+// app.get('/notes' , (req, res) => {
+//     fs.readFile(path.join(__dirname, 'public', 'notes.html'));
+// });
 
-// GET route to send everything else to index.html
-app.get('*', (req, res) => {
-    fs.sendFile(path.join(__dirname, 'public','index.html'));
-});
+// // GET route to send everything else to index.html
+// app.get('*', (req, res) => {
+//     fs.readFile(path.join(__dirname, 'public','index.html'));
+// });
 
 
 // GET /api/notes to read and return all the notes from db.json
@@ -40,7 +40,6 @@ app.post('/api/notes' , (req, res) => {
     const newNote = {...req.body, id: uuidv4()};
     fs.readFile(path.join(__dirname, 'db', 'db.json'), 'utf8', (err, data) => {
         if (err) {
-            console.error(err);
             return res.status(500).json({ message: 'Error saving note'});
         }
         const notes = JSON.parse(data);
