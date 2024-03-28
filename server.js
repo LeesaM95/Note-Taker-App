@@ -25,7 +25,7 @@ app.get('*', (req, res) => {
 
 
 // GET /api/notes to read and return all the notes from db.json
-app.get('/notes', (req, res) => {
+app.get('/api/notes', (req, res) => {
     fs.readFile(path.join(__dirname, 'db','db.json'), 'utf8', (err, data) => {
         if (err) {
             console.error(err);
@@ -36,7 +36,7 @@ app.get('/notes', (req, res) => {
 })
 
 // POST /api/notes to create a new note and add it to the db.json file
-app.post('/notes' , (req, res) => {
+app.post('/api/notes' , (req, res) => {
     const newNote = {...req.body, id: uuidv4()};
     fs.readFile(path.join(__dirname, 'db', 'db.json'), 'utf8', (err, data) => {
         if (err) {
@@ -58,7 +58,7 @@ app.post('/notes' , (req, res) => {
 
 // DELETE /api/notes/:id to pull the note data via the note id from the db.json file
 // and delete from the db.json file
-app.delete('/notes/:id', (req, res) => {
+app.delete('/api/notes/:id', (req, res) => {
     const noteId = req.params.id;
 
     fs.readFile(path.join(__dirname, 'db', 'db.json'), 'utf8', (err, data) => {
