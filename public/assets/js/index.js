@@ -35,7 +35,7 @@ const getNotes = () =>
       'Content-Type': 'application/json'
     }
   });
-
+console.log(getNotes)
 const saveNote = (note) =>
   fetch('/api/notes', {
     method: 'POST',
@@ -133,7 +133,7 @@ const renderNoteList = async (notes) => {
   if (window.location.pathname === '/notes') {
     noteList.forEach((el) => (el.innerHTML = ''));
   }
-
+console.log(renderNoteList)
   let noteListItems = [];
 
   // Returns HTML element with or without a delete button

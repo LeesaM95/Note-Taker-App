@@ -1,30 +1,31 @@
 const express = require('express');
-const fs = require('fs');
 const app = express();
+const fs = require('fs');
 const { v4: uuidv4 } = require('uuid');
 
 
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
+
 
 const PORT = process.env.PORT || 3001;
 
 // GET route to send /notes to notes.html
 app.get('/notes' , (req, res) => {
-    fs.sendFile(path.join(__dirname, 'public', 'notes.html'));
+    fs.sendFile(path.join(__dirname, 'public/notes.html'));
 });
 
 // GET route to send everything else to index.html
 app.get('*', (req, res) => {
-    fs.sendFile(path.join(__dirname, 'public', 'index.html'));
+    fs.sendFile(path.join(__dirname, 'public/index.html'));
 });
 
 
 // GET /api/notes to read and return all the notes from db.json
 app.get('/api/notes', (req, res) => {
-    fs.readFile(path.join(__dirname, 'db', 'db.json'), 'utf8', (err, data) => {
+    fs.readFile(path.join(__dirname, 'db/db.json'), 'utf8', (err, data) => {
         if (err) {
             console.error(err);
             return res.status(500).json({ message: 'Error: Notes Unreadable '})
