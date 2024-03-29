@@ -14,14 +14,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 const PORT = process.env.PORT || 3001;
 
 // // GET route to send /notes to notes.html
-// app.get('/notes' , (req, res) => {
-//     fs.readFile(path.join(__dirname, 'public', 'notes.html'));
-// });
+app.get('/notes' , (req, res) => {
+    fs.readFile(path.join(__dirname, 'public', 'notes.html'));
+});
 
-// // GET route to send everything else to index.html
-// app.get('*', (req, res) => {
-//     fs.readFile(path.join(__dirname, 'public','index.html'));
-// });
+// GET route to send everything else to index.html
+app.get('/', (req, res) => {
+    fs.readFile(path.join(__dirname, 'public','index.html'));
+});
 
 
 // GET /api/notes to read and return all the notes from db.json
