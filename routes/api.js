@@ -5,12 +5,12 @@ const { v4: uuidv4 } = require('uuid');
 
 // Send a GET request via api/notes to retrieve saved notes
 
-api.get('api/notes', (req, res) => {
+api.get('/notes', (req, res) => {
   res.sendFile(path.join(__dirname, '../db/db.json'));
 });
 // Send a POST request via api/notes to create a new Note
 
-api.post('api/notes', (req, res) => {
+api.post('/notes', (req, res) => {
   let noteLi = JSON.parse(fs.readFileSync('./db/db.json'));
   let newNote = req.body;
   newNote.id = uuidv4();
@@ -21,7 +21,7 @@ fs.writeFileSync('..db/db.json', JSON.stringify(noteLi));
 });
 
 // Send a DELETE request via api/notes/:id
-api.delete('/api/notes/:id', (req, res) => {
+api.delete('/notes/:id', (req, res) => {
   let noteLi = JSON.parse(fs.readFileSync('../db/db.json'))
   const id = req.params.id;
   
