@@ -8,7 +8,7 @@ const noteLi = require('../db/db.json');
 
 noteRoute.get('api/notes', (req, res) => {
   res.sendFile(path.join(__dirname, '../db/db.json'));
-
+});
 // Send a POST request via api/notes to create a new Note
 
 noteRoute.post('api/notes', (req, res) => {
