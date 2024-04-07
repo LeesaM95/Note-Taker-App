@@ -1,5 +1,4 @@
 const express = require('express');
-const path = require('path');
 const baseRoute = require('./routes/baseRoute');
 const noteRoute = require('./routes/noteRoute');
 const app = express();
@@ -17,5 +16,5 @@ app.use(baseRoute);
 
 
 app.listen(PORT, () => {
-    console.log(`Server listening on port ${PORT}`)
+    console.log(`Server listening on local host port ${PORT}`)
 });
